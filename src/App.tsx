@@ -430,8 +430,8 @@ export default function App() {
         <div className="flex items-center gap-4 cursor-pointer select-none" onClick={() => setView("dashboard")}>
           <div className="bg-[#0F172A] text-white p-2.5 font-black text-2xl leading-none tracking-tighter border-2 border-[#0F172A]">SQL</div>
           <div>
-            <h1 className="font-display font-black text-2xl uppercase tracking-tighter text-[#0F172A] flex items-center gap-2">
-              10H Masterclass <span className="text-xs bg-amber-400 border-2 border-[#0F172A] text-[#0F172A] font-black px-2 py-0.5 rounded-full">DBMS WORKSPACE</span>
+            <h1 className="font-display font-black text-sm xs:text-base sm:text-lg md:text-xl uppercase tracking-tighter text-[#0F172A] flex items-center gap-2 whitespace-nowrap">
+              PRE-PLACEMENT TRAINING <span className="text-xs bg-amber-400 border-2 border-[#0F172A] text-[#0F172A] font-black px-2 py-0.5 rounded-full">DBMS WORKSPACE</span>
             </h1>
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider hidden sm:block">Interactive query lab and progress notebook</p>
           </div>
@@ -459,7 +459,7 @@ export default function App() {
               <div className="text-sm font-black text-[#0F172A] uppercase tracking-tighter">{coursePercentage}% COMPLETED</div>
               <div className="text-xs font-bold text-slate-500 uppercase tracking-widest font-mono">10-Hour Lab</div>
             </div>
-            <div className="w-12 h-12 bg-indigo-500 rounded-full border-2 border-[#0F172A] flex items-center justify-center relative shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
+            <div className="w-12 h-12 bg-blue-600 rounded-full border-2 border-[#0F172A] flex items-center justify-center relative shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
               <Award className={`w-5 h-5 ${completedCount === 30 ? 'text-amber-300 animate-bounce' : 'text-white'}`} />
               {completedCount === 30 && (
                 <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 rounded-full animate-ping border border-white"></span>
@@ -477,13 +477,13 @@ export default function App() {
           
           {/* Welcome Banner */}
           <div className="relative overflow-hidden rounded-3xl border-4 border-[#0F172A] bg-white p-8 md:p-10 shadow-[10px_10px_0px_0px_rgba(15,23,42,1)]">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-100/40 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-50/30 rounded-full blur-3xl -z-10"></div>
             
             <div className="grid md:grid-cols-3 gap-8 items-center">
               <div className="md:col-span-2 space-y-5">
-                <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-indigo-50 text-indigo-700 border-2 border-indigo-500">
-                  <Sparkles className="w-4.5 h-4.5 mr-1.5 text-indigo-500 fill-current" />
+                <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-blue-50 text-blue-700 border-2 border-blue-500">
+                  <Sparkles className="w-4.5 h-4.5 mr-1.5 text-blue-500 fill-current" />
                   Self-Paced Training Course Sandbox
                 </span>
                 <h2 className="text-3xl md:text-5xl font-display font-black tracking-tight text-[#0F172A] leading-none uppercase">
@@ -494,7 +494,7 @@ export default function App() {
                 </p>
                 <div className="flex flex-wrap gap-4 pt-2">
                   <div className="flex items-center space-x-2 bg-slate-50 px-4 py-2.5 rounded-xl border-2 border-[#0F172A] shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
-                    <Database className="w-4 h-4 text-indigo-600" />
+                    <Database className="w-4 h-4 text-blue-600" />
                     <span className="text-xs font-black uppercase text-[#0F172A] tracking-wider">In-Browser WASM SQLite Engine</span>
                   </div>
                   <div className="flex items-center space-x-2 bg-slate-50 px-4 py-2.5 rounded-xl border-2 border-[#0F172A] shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
@@ -547,7 +547,7 @@ export default function App() {
                       setSelectedQuestion(nextQ);
                       setView("workspace");
                     }}
-                    className="w-full py-3 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-black uppercase tracking-tight border-2 border-[#0F172A] shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition flex items-center justify-center gap-2"
+                    className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-tight border-2 border-[#0F172A] shadow-[4px_4px_0px_0px_rgba(37,99,235,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition flex items-center justify-center gap-2"
                   >
                     <Play className="w-4 h-4 fill-current text-white" />
                     {completedCount > 0 ? "Resume Learning" : "Start Course Lab"}
@@ -600,7 +600,7 @@ export default function App() {
                     <div className="p-6 flex-1 flex flex-col space-y-4">
                       {/* Badge / Number */}
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-black text-indigo-600 tracking-wider">
+                        <span className="text-xs font-mono font-black text-blue-600 tracking-wider">
                           SESSION {session.number} / 5
                         </span>
                         {isCompleted ? (
@@ -620,7 +620,7 @@ export default function App() {
 
                       {/* Header */}
                       <div className="space-y-1.5">
-                        <h4 className="font-display font-black text-xl text-[#0F172A] group-hover:text-indigo-600 transition uppercase tracking-tight leading-snug">
+                        <h4 className="font-display font-black text-xl text-[#0F172A] group-hover:text-blue-600 transition uppercase tracking-tight leading-snug">
                           {session.title.replace(`Session ${session.number} — `, "")}
                         </h4>
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest font-mono flex items-center gap-1">
@@ -652,7 +652,7 @@ export default function App() {
                         <div className="w-full bg-slate-100 h-3.5 rounded-full overflow-hidden border-2 border-[#0F172A]">
                           <div 
                             className={`h-full rounded-full transition-all duration-300 ${
-                              isCompleted ? 'bg-emerald-500' : 'bg-indigo-500'
+                              isCompleted ? 'bg-emerald-500' : 'bg-blue-600'
                             }`}
                             style={{ width: `${sessionProg.percent}%` }}
                           ></div>
@@ -669,7 +669,7 @@ export default function App() {
                         setSelectedQuestion(incomplete || session.questions[0]);
                         setView("workspace");
                       }}
-                      className="border-t-4 border-[#0F172A] py-4 px-6 text-xs font-black text-slate-600 group-hover:text-indigo-600 hover:bg-slate-50 bg-slate-50/50 text-left flex items-center justify-between transition uppercase tracking-wider cursor-pointer"
+                      className="border-t-4 border-[#0F172A] py-4 px-6 text-xs font-black text-slate-600 group-hover:text-blue-600 hover:bg-slate-50 bg-slate-50/50 text-left flex items-center justify-between transition uppercase tracking-wider cursor-pointer"
                     >
                       <span>Enter Practice Lab</span>
                       <ChevronRight className="w-4 h-4 text-slate-600 group-hover:translate-x-1 transition" />
@@ -683,11 +683,11 @@ export default function App() {
           {/* COURSE LEARNING OUTCOMES */}
           <section className="bg-white rounded-3xl border-4 border-[#0F172A] p-8 space-y-6 shadow-[10px_10px_0px_0px_rgba(15,23,42,1)]">
             <h3 className="text-xl md:text-2xl font-display font-black text-[#0F172A] flex items-center gap-2 uppercase tracking-tight">
-              <Award className="w-6 h-6 text-indigo-500 fill-current" /> Syllabus Learning Outcomes
+              <Award className="w-6 h-6 text-blue-500 fill-current" /> Syllabus Learning Outcomes
             </h3>
             <div className="grid md:grid-cols-2 gap-6 leading-relaxed">
               <div className="bg-slate-50 p-6 rounded-2xl border-2 border-[#0F172A] space-y-2 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
-                <h4 className="font-black text-indigo-600 text-xs font-mono uppercase tracking-widest">Foundation & Grouping</h4>
+                <h4 className="font-black text-blue-600 text-xs font-mono uppercase tracking-widest">Foundation & Grouping</h4>
                 <p className="text-slate-600 text-sm font-medium">
                   After completing Session 1 and 2, students will be fully capable of writing structured queries to filter and order records using multi-conditional logic (WHERE, AND, OR, BETWEEN, IN, LIKE), and performing advanced summaries and group aggregates with HAVING conditions.
                 </p>
@@ -719,7 +719,7 @@ export default function App() {
             <div className="p-5 border-b-4 border-[#0F172A] bg-slate-50 space-y-4">
               <button 
                 onClick={() => setView("dashboard")}
-                className="inline-flex items-center text-xs font-black uppercase tracking-wider text-slate-500 hover:text-indigo-600 transition group"
+                className="inline-flex items-center text-xs font-black uppercase tracking-wider text-slate-500 hover:text-blue-600 transition group"
               >
                 <ArrowLeft className="w-4 h-4 mr-1 group-hover:-translate-x-0.5 transition" />
                 Back to Syllabus Dashboard
@@ -742,7 +742,7 @@ export default function App() {
                   ))}
                 </select>
 
-                <span className="text-[10px] font-black uppercase font-mono text-indigo-600 bg-indigo-50 border-2 border-indigo-200 px-2 py-1 rounded-md">
+                <span className="text-[10px] font-black uppercase font-mono text-blue-600 bg-blue-50 border-2 border-blue-200 px-2 py-1 rounded-md">
                   {selectedSession.domain}
                 </span>
               </div>
@@ -772,7 +772,7 @@ export default function App() {
                 <Database className="w-4 h-4" />
                 Database Explorer
                 <span className={`ml-1 px-1.5 py-0.5 text-[9px] font-black font-mono rounded border ${
-                  leftTab === "schema" ? "bg-indigo-500 text-white border-indigo-400" : "bg-[#0F172A] text-white border-[#0F172A]"
+                  leftTab === "schema" ? "bg-blue-600 text-white border-blue-400" : "bg-[#0F172A] text-white border-[#0F172A]"
                 }`}>
                   {selectedSession.tables.length}
                 </span>
@@ -801,7 +801,7 @@ export default function App() {
                             onClick={() => setSelectedQuestion(q)}
                             className={`p-3.5 rounded-xl border-2 transition-all flex items-center justify-between group ${
                               isCurrent 
-                                ? "bg-[#0F172A] border-[#0F172A] text-white shadow-[4px_4px_0px_0px_rgba(99,102,241,1)]" 
+                                ? "bg-[#0F172A] border-[#0F172A] text-white shadow-[4px_4px_0px_0px_rgba(37,99,235,1)]" 
                                 : isSolved 
                                   ? "bg-emerald-50 border-emerald-500 text-emerald-950 hover:bg-emerald-100 shadow-[3px_3px_0px_0px_rgba(16,185,129,1)]"
                                   : "bg-slate-50 border-[#0F172A] text-[#0F172A] hover:bg-slate-100 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]"
@@ -812,7 +812,7 @@ export default function App() {
                                 <CheckCircle className="w-4.5 h-4.5 text-emerald-500 fill-emerald-100 shrink-0" />
                               ) : (
                                 <div className={`w-5 h-5 rounded border-2 flex items-center justify-center text-[10px] font-black font-mono shrink-0 ${
-                                  isCurrent ? 'border-indigo-400 text-white bg-indigo-500' : 'border-[#0F172A] text-[#0F172A] bg-white'
+                                  isCurrent ? 'border-blue-400 text-white bg-blue-600' : 'border-[#0F172A] text-[#0F172A] bg-white'
                                 }`}>
                                   {q.title.includes("Easy") ? "E" : q.title.includes("Medium") ? "M" : "H"}
                                 </div>
@@ -866,8 +866,8 @@ export default function App() {
 
                     {/* Scenario */}
                     <div className="p-4 rounded-xl bg-slate-50 border-2 border-[#0F172A] space-y-2 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
-                      <h4 className="text-[10px] font-mono font-black text-indigo-600 uppercase tracking-widest flex items-center gap-1">
-                        <Info className="w-3.5 h-3.5 text-indigo-600" /> Real-World Scenario
+                      <h4 className="text-[10px] font-mono font-black text-blue-600 uppercase tracking-widest flex items-center gap-1">
+                        <Info className="w-3.5 h-3.5 text-blue-600" /> Real-World Scenario
                       </h4>
                       <p className="text-xs text-slate-700 leading-relaxed font-semibold">
                         {selectedQuestion.scenario}
@@ -877,7 +877,7 @@ export default function App() {
                     {/* Question Statement */}
                     <div className="space-y-1.5">
                       <h4 className="text-[11px] font-black uppercase text-slate-400 tracking-widest">Problem Statement</h4>
-                      <p className="text-sm font-bold text-[#0F172A] leading-relaxed bg-slate-100 border-l-4 border-indigo-500 p-3.5 rounded-r">
+                      <p className="text-sm font-bold text-[#0F172A] leading-relaxed bg-slate-100 border-l-4 border-blue-500 p-3.5 rounded-r">
                         {selectedQuestion.questionText}
                       </p>
                     </div>
@@ -898,7 +898,7 @@ export default function App() {
                     <details className="group border-2 border-[#0F172A] rounded-xl bg-slate-50 overflow-hidden transition-all shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
                       <summary className="p-3 text-xs font-black uppercase tracking-wider text-slate-600 group-hover:text-[#0F172A] cursor-pointer flex items-center justify-between select-none">
                         <span>Need a hint?</span>
-                        <span className="text-[10px] font-black font-mono text-indigo-600 group-open:hidden">SHOW +</span>
+                        <span className="text-[10px] font-black font-mono text-blue-600 group-open:hidden">SHOW +</span>
                         <span className="text-[10px] font-black font-mono text-slate-500 group-open:inline">HIDE -</span>
                       </summary>
                       <div className="p-4 border-t-2 border-[#0F172A] text-xs text-slate-600 leading-relaxed bg-white font-semibold">
@@ -926,7 +926,7 @@ export default function App() {
                         onClick={() => setActiveExploreTable(table.name)}
                         className={`px-3 py-2 rounded-lg text-xs font-black font-mono uppercase transition flex items-center gap-1.5 border-2 ${
                           activeExploreTable === table.name
-                            ? "bg-[#0F172A] border-[#0F172A] text-white shadow-[2px_2px_0px_0px_rgba(99,102,241,1)]"
+                            ? "bg-[#0F172A] border-[#0F172A] text-white shadow-[2px_2px_0px_0px_rgba(37,99,235,1)]"
                             : "bg-white border-[#0F172A] text-[#0F172A] hover:bg-slate-50 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]"
                         }`}
                       >
@@ -946,7 +946,7 @@ export default function App() {
                         
                         {/* Table metadata description */}
                         <div className="p-4 bg-slate-50 rounded-xl border-2 border-[#0F172A] space-y-2 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
-                          <h5 className="text-[10px] font-mono font-black text-indigo-600 uppercase tracking-widest">Description</h5>
+                          <h5 className="text-[10px] font-mono font-black text-blue-600 uppercase tracking-widest">Description</h5>
                           <p className="text-xs text-slate-700 leading-relaxed font-semibold">{table.desc}</p>
                           
                           <h5 className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest pt-2">SQL Schema</h5>
@@ -1009,7 +1009,7 @@ export default function App() {
             <div className="px-5 py-3 border-b-4 border-[#0F172A] bg-slate-50 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <span className="text-xs font-black uppercase font-mono text-[#0F172A] flex items-center gap-1">
-                  <FileText className="w-4 h-4 text-indigo-600" />
+                  <FileText className="w-4 h-4 text-blue-600" />
                   query.sql
                 </span>
                 
@@ -1023,7 +1023,7 @@ export default function App() {
               <div className="flex items-center space-x-2">
                 <button 
                   onClick={formatQuery}
-                  className="text-xs font-black uppercase tracking-wider text-slate-700 hover:text-indigo-600 px-3 py-1.5 rounded-lg border-2 border-transparent hover:border-[#0F172A] transition"
+                  className="text-xs font-black uppercase tracking-wider text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-lg border-2 border-transparent hover:border-[#0F172A] transition"
                   title="Format SQL syntax with uppercase keywords"
                 >
                   Format SQL
@@ -1052,7 +1052,7 @@ export default function App() {
                   <button
                     key={word}
                     onClick={() => insertKeyword(word)}
-                    className="text-[10px] font-black font-mono bg-white hover:bg-indigo-50 text-[#0F172A] border-2 border-[#0F172A] rounded px-2 py-0.5 cursor-pointer whitespace-nowrap transition active:translate-y-0.5 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]"
+                    className="text-[10px] font-black font-mono bg-white hover:bg-blue-50 text-[#0F172A] border-2 border-[#0F172A] rounded px-2 py-0.5 cursor-pointer whitespace-nowrap transition active:translate-y-0.5 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]"
                   >
                     {word}
                   </button>
@@ -1064,7 +1064,7 @@ export default function App() {
                 <button
                   onClick={handleRunQuery}
                   disabled={isRunning}
-                  className="px-5 py-3 bg-[#0F172A] hover:bg-indigo-600 text-white text-xs font-black font-mono uppercase rounded-xl border-2 border-[#0F172A] shadow-[4px_4px_0px_0px_rgba(99,102,241,1)] flex items-center gap-2 transition active:translate-y-1 active:shadow-none disabled:opacity-50"
+                  className="px-5 py-3 bg-[#0F172A] hover:bg-blue-700 text-white text-xs font-black font-mono uppercase rounded-xl border-2 border-[#0F172A] shadow-[4px_4px_0px_0px_rgba(37,99,235,1)] flex items-center gap-2 transition active:translate-y-1 active:shadow-none disabled:opacity-50"
                 >
                   {isRunning ? (
                     <RefreshCw className="w-3.5 h-3.5 animate-spin" />
@@ -1087,7 +1087,7 @@ export default function App() {
                   </span>
                   
                   {queryResult && !queryResult.error && (
-                    <span className="text-[10px] text-[#0F172A] bg-indigo-50 border border-indigo-200 font-mono font-black uppercase tracking-wider px-2 py-0.5 rounded-md">
+                    <span className="text-[10px] text-[#0F172A] bg-blue-50 border border-blue-200 font-mono font-black uppercase tracking-wider px-2 py-0.5 rounded-md">
                       {queryResult.rows.length} rows returned
                     </span>
                   )}
@@ -1096,8 +1096,8 @@ export default function App() {
                 <div className="flex-1 overflow-auto p-5 bg-white">
                   {!queryResult ? (
                     <div className="h-full flex flex-col items-center justify-center text-center text-slate-500 space-y-3 p-6">
-                      <div className="w-12 h-12 bg-indigo-50 border-2 border-dashed border-[#0F172A] rounded-xl flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
-                        <Database className="w-6 h-6 text-indigo-600 animate-pulse" />
+                      <div className="w-12 h-12 bg-blue-50 border-2 border-dashed border-[#0F172A] rounded-xl flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
+                        <Database className="w-6 h-6 text-blue-600 animate-pulse" />
                       </div>
                       <div>
                         <p className="text-sm font-black uppercase text-[#0F172A] tracking-wide">Console Ready</p>
@@ -1121,7 +1121,7 @@ export default function App() {
                         <button
                           onClick={handleAskAI}
                           disabled={aiLoading}
-                          className="px-4 py-2.5 bg-[#0F172A] hover:bg-indigo-600 text-white border-2 border-[#0F172A] rounded-xl text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 transition active:translate-y-0.5 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]"
+                          className="px-4 py-2.5 bg-[#0F172A] hover:bg-blue-700 text-white border-2 border-[#0F172A] rounded-xl text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 transition active:translate-y-0.5 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]"
                         >
                           <Sparkles className="w-4 h-4" />
                           {aiLoading ? "Consulting AI Tutor..." : "Ask AI Tutor to Explain Error"}
@@ -1200,8 +1200,8 @@ export default function App() {
               {/* AI SQL Tutor Sidebar helper */}
               <div className="w-[340px] max-w-md bg-slate-50 flex flex-col h-full overflow-hidden">
                 <div className="px-4 py-3 bg-[#0F172A] border-b-2 border-[#0F172A] flex items-center justify-between">
-                  <span className="text-xs font-black font-mono text-indigo-300 uppercase tracking-wider flex items-center gap-1">
-                    <Sparkles className="w-4 h-4 text-indigo-400" />
+                  <span className="text-xs font-black font-mono text-blue-300 uppercase tracking-wider flex items-center gap-1">
+                    <Sparkles className="w-4 h-4 text-blue-400" />
                     AI Coding Tutor
                   </span>
                   
@@ -1219,8 +1219,8 @@ export default function App() {
                   {aiLoading ? (
                     <div className="h-full flex flex-col items-center justify-center text-center text-slate-500 space-y-3 p-4">
                       <div className="relative">
-                        <div className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
-                        <Sparkles className="w-5 h-5 text-indigo-500 absolute inset-0 m-auto animate-pulse" />
+                        <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+                        <Sparkles className="w-5 h-5 text-blue-500 absolute inset-0 m-auto animate-pulse" />
                       </div>
                       <div className="space-y-1">
                         <p className="text-xs font-black uppercase text-[#0F172A]">Analyzing SQL...</p>
@@ -1246,7 +1246,7 @@ export default function App() {
                   ) : (
                     <div className="h-full flex flex-col items-center justify-center text-center text-slate-400 space-y-3 p-4">
                       <div className="w-10 h-10 bg-slate-50 border-2 border-[#0F172A] rounded-lg flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
-                        <HelpCircle className="w-5 h-5 text-indigo-500" />
+                        <HelpCircle className="w-5 h-5 text-blue-500" />
                       </div>
                       <div className="space-y-1">
                         <p className="text-xs font-black uppercase text-[#0F172A]">Need Explanations?</p>
@@ -1269,7 +1269,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="py-3.5 px-6 bg-[#0F172A] border-t-4 border-[#0F172A] text-center text-[10px] text-slate-300 font-bold uppercase tracking-wider flex justify-between items-center shrink-0">
         <p>© HKBK College of Engineering, Built by Department of CSE.</p>
-        <p className="font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">SQLite v3.x WASM Engine</p>
+        <p className="font-mono text-blue-300 bg-blue-950 px-2 py-0.5 rounded border border-blue-800">SQLite v3.x WASM Engine</p>
       </footer>
 
     </div>
