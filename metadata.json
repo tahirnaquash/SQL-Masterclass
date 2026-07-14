@@ -1,0 +1,6 @@
+{
+  "name": "10-Hour DBMS SQL Training",
+  "description": "An interactive query practice and progress tracking platform for the 10-Hour DBMS SQL Training course. Features real-time SQLite database execution, sample schema visualizations, and AI-powered feedback.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
