@@ -1268,7 +1268,7 @@ export default function App() {
 
       {/* FOOTER */}
       <footer className="py-3.5 px-6 bg-[#0F172A] border-t-4 border-[#0F172A] text-center text-[10px] text-slate-300 font-bold uppercase tracking-wider flex justify-between items-center shrink-0">
-        <p>© 10-Hour DBMS SQL Training Course Companion. Built strictly from course materials.</p>
+        <p>© HKBK College of Engineering, Built by Department of CSE.</p>
         <p className="font-mono text-indigo-300 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">SQLite v3.x WASM Engine</p>
       </footer>
 
