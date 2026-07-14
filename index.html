@@ -4,6 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>10-Hour DBMS SQL Training Platform</title>
+    <!-- Workaround for iframe environments where window.fetch has only a getter -->
+    <script>
+      (function() {
+        try {
+          const originalFetch = window.fetch;
+          let customFetch = originalFetch ? originalFetch.bind(window) : null;
+          
+          Object.defineProperty(window, 'fetch', {
+            get() {
+              return customFetch;
+            },
+            set(val) {
+              customFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          console.warn("Failed to redefine window.fetch directly:", e);
+          try {
+            const proto = Object.getPrototypeOf(window);
+            if (proto) {
+              const originalFetch = proto.fetch || window.fetch;
+              let customFetch = originalFetch ? originalFetch.bind(window) : null;
+              Object.defineProperty(proto, 'fetch', {
+                get() {
+                  return customFetch;
+                },
+                set(val) {
+                  customFetch = val;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (e2) {
+            console.error("Critical fallback failed for window.fetch:", e2);
+          }
+        }
+      })();
+    </script>
     <!-- sql.js SQLite WebAssembly engine CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
   </head>
