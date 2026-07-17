@@ -124,7 +124,7 @@ export default function App() {
     if (!sqlEngine) return;
     try {
       const db = new sqlEngine.Database();
-      db.run(selectedSession.seedSQL);
+      db.exec(selectedSession.seedSQL);
       setDbInstance(db);
       setQueryResult(null);
       setValidationResult(null);
@@ -138,18 +138,20 @@ export default function App() {
       // Automatically inspect all tables to show them in the schema browser
       const tempSchemaData: Record<string, { columns: string[]; rows: any[][] }> = {};
       selectedSession.tables.forEach(t => {
+        const fallbackCols = t.schema ? t.schema.split(',').map(p => p.trim().split(/\s+/)[0]).filter(Boolean) : [];
         try {
-          const res = db.exec(`SELECT * FROM ${t.name};`);
+          const res = db.exec(`SELECT * FROM [${t.name}];`);
           if (res.length > 0) {
             tempSchemaData[t.name] = {
               columns: res[0].columns,
               rows: res[0].values
             };
           } else {
-            tempSchemaData[t.name] = { columns: [], rows: [] };
+            tempSchemaData[t.name] = { columns: fallbackCols, rows: [] };
           }
         } catch (e) {
           console.error("Error loading table schema values:", e);
+          tempSchemaData[t.name] = { columns: fallbackCols, rows: [] };
         }
       });
       setSchemaData(tempSchemaData);
