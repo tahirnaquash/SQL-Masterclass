@@ -177,7 +177,7 @@ export default function App() {
 
   // Execute User Query
   const handleRunQuery = () => {
-    if (!dbInstance) return;
+    if (!sqlEngine) return;
     setIsRunning(true);
     setQueryResult(null);
     setValidationResult(null);
@@ -192,16 +192,24 @@ export default function App() {
           return;
         }
 
-        const res = dbInstance.exec(trimmedQuery);
+        // Create a completely clean database instance for this run to avoid "already exists" errors
+        const db = new sqlEngine.Database();
+        db.exec(selectedSession.seedSQL);
+
+        const res = db.exec(trimmedQuery);
+        setDbInstance(db);
+
         if (res.length === 0) {
           setQueryResult({ columns: [], rows: [] }); // Executed but returned no rows
-          verifyResults(trimmedQuery, []);
+          verifyResults(trimmedQuery, [], [], db);
         } else {
+          // If there are multiple result sets (e.g. CREATE VIEW; SELECT *), get the last one
+          const lastRes = res[res.length - 1];
           setQueryResult({
-            columns: res[0].columns,
-            rows: res[0].values
+            columns: lastRes.columns,
+            rows: lastRes.values
           });
-          verifyResults(trimmedQuery, res[0].values, res[0].columns);
+          verifyResults(trimmedQuery, lastRes.values, lastRes.columns, db);
         }
       } catch (err: any) {
         setQueryResult({ columns: [], rows: [], error: err.message || "Execution failed." });
@@ -216,18 +224,24 @@ export default function App() {
   };
 
   // Run the validation check
-  const verifyResults = (userSQL: string, userRows: any[][], userCols: string[] = []) => {
+  const verifyResults = (userSQL: string, userRows: any[][], userCols: string[] = [], activeDb: any = null) => {
     try {
-      // 1. Get official solution results
-      const solutionRes = dbInstance.exec(selectedQuestion.solutionQuery);
+      if (!sqlEngine) return;
+
+      // 1. Get official solution results on a completely clean separate database
+      const solDb = new sqlEngine.Database();
+      solDb.exec(selectedSession.seedSQL);
+      const solutionRes = solDb.exec(selectedQuestion.solutionQuery);
+
       if (solutionRes.length === 0) {
         // Solution has no rows? (should not happen)
         setValidationResult({ isCorrect: false, message: "Internal validation error. Contact instructor." });
         return;
       }
 
-      const solColumns = solutionRes[0].columns;
-      const solRows = solutionRes[0].values;
+      const lastSolRes = solutionRes[solutionRes.length - 1];
+      const solColumns = lastSolRes.columns;
+      const solRows = lastSolRes.values;
 
       // Check column counts
       if (userCols.length !== solColumns.length) {
@@ -400,7 +414,7 @@ export default function App() {
   };
 
   // Total Course Progress percentage
-  const totalQuestions = 30;
+  const totalQuestions = 36;
   const completedCount = progress.completedQuestions.length;
   const coursePercentage = Math.round((completedCount / totalQuestions) * 100);
 

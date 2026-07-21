@@ -705,5 +705,217 @@ WHERE order_amount > previous_order_amount;`,
         concepts: ["CTE", "LAG", "Sequential Comparison", "Analytical Filtering"]
       }
     ]
+  },
+  {
+    number: 6,
+    title: "Session 6 — Campus Placements and Views",
+    domain: "University Placement Cell",
+    topics: ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN", "CREATE VIEW", "SELECT FROM VIEW", "GROUP BY", "COUNT", "AVG"],
+    tables: [
+      {
+        name: "STUDENT",
+        schema: "student_id INT, student_name VARCHAR(100), department VARCHAR(50), cgpa DECIMAL(3,2)",
+        desc: "Stores details of students including their department and CGPA."
+      },
+      {
+        name: "COMPANY",
+        schema: "company_id INT, company_name VARCHAR(100), package DECIMAL(5,2), location VARCHAR(50)",
+        desc: "Stores details of visiting companies, their package (LPA), and location."
+      },
+      {
+        name: "PLACEMENT",
+        schema: "placement_id INT, student_id INT, company_id INT, placement_date DATE, status VARCHAR(20)",
+        desc: "Tracks student recruitment records including placement date and selection status."
+      }
+    ],
+    seedSQL: `
+      CREATE TABLE STUDENT (
+        student_id INT,
+        student_name VARCHAR(100),
+        department VARCHAR(50),
+        cgpa DECIMAL(3,2)
+      );
+
+      CREATE TABLE COMPANY (
+        company_id INT,
+        company_name VARCHAR(100),
+        package DECIMAL(5,2),
+        location VARCHAR(50)
+      );
+
+      CREATE TABLE PLACEMENT (
+        placement_id INT,
+        student_id INT,
+        company_id INT,
+        placement_date DATE,
+        status VARCHAR(20)
+      );
+
+      INSERT INTO STUDENT VALUES
+      (101, 'Arun', 'CSE', 8.5),
+      (102, 'Sneha', 'ISE', 8.2),
+      (103, 'Rahul', 'AIML', 7.5),
+      (104, 'Ayesha', 'CSE', 7.8),
+      (109, 'Imran', 'ISE', 7.2),
+      (111, 'Chitra', 'CSE', 8.1),
+      (112, 'Deepak', 'CSE', 8.3),
+      (113, 'Esha', 'CSE', 8.4),
+      (114, 'Farhan', 'CSE', 8.6),
+      (115, 'Gita', 'CSE', 8.8),
+      (116, 'Hari', 'CSE', 8.9),
+      (117, 'Indu', 'CSE', 9.0),
+      (118, 'Jatin', 'CSE', 9.1),
+      (119, 'Kiran', 'CSE', 9.2),
+      (120, 'Lata', 'CSE', 9.3),
+      (121, 'Manoj', 'CSE', 9.4),
+      (122, 'Nisha', 'CSE', 9.5),
+      (123, 'Om', 'CSE', 9.6),
+      (124, 'Preeti', 'CSE', 9.7),
+      (125, 'Ravi', 'CSE', 9.8),
+      (126, 'Sanjay', 'CSE', 9.9),
+      (127, 'Tanya', 'CSE', 8.0),
+      (131, 'Umesh', 'ISE', 8.1),
+      (132, 'Varun', 'ISE', 8.2),
+      (133, 'Yash', 'ISE', 8.3),
+      (134, 'Zeenat', 'ISE', 8.4),
+      (135, 'Abhay', 'ISE', 8.5),
+      (136, 'Bina', 'ISE', 8.6),
+      (137, 'Charan', 'ISE', 8.7),
+      (138, 'Dev', 'ISE', 8.8),
+      (139, 'Ekta', 'ISE', 8.9),
+      (140, 'Gopal', 'ISE', 9.0),
+      (141, 'Heena', 'ISE', 9.1),
+      (151, 'Amit', 'AIML', 8.1),
+      (152, 'Babita', 'AIML', 8.2),
+      (153, 'Chetan', 'AIML', 8.3),
+      (154, 'Divya', 'AIML', 8.4),
+      (155, 'Elena', 'AIML', 8.5),
+      (156, 'Firoz', 'AIML', 8.6),
+      (157, 'Gaurav', 'AIML', 8.7),
+      (158, 'Hema', 'AIML', 8.8),
+      (159, 'Ishaan', 'AIML', 8.9),
+      (160, 'Juhi', 'AIML', 9.0),
+      (161, 'Kunal', 'AIML', 9.1),
+      (162, 'Leela', 'AIML', 9.2),
+      (163, 'Mohit', 'AIML', 9.3),
+      (164, 'Neha', 'AIML', 9.4),
+      (165, 'Pooja', 'AIML', 9.5);
+
+      INSERT INTO COMPANY VALUES
+      (1, 'Infosys', 9.75, 'Bengaluru'),
+      (2, 'TCS', 8.40, 'Bengaluru'),
+      (3, 'Wipro', 10.20, 'Bengaluru'),
+      (4, 'IBM', 15.00, 'Bengaluru');
+
+      INSERT INTO PLACEMENT VALUES
+      (1, 101, 1, '2026-07-15', 'Selected'),
+      (2, 102, 2, '2026-07-16', 'Selected'),
+      (3, 103, 3, '2026-07-17', 'Rejected'),
+      (11, 111, 1, '2026-07-15', 'Selected'),
+      (12, 112, 1, '2026-07-15', 'Selected'),
+      (13, 113, 1, '2026-07-15', 'Selected'),
+      (14, 114, 1, '2026-07-15', 'Selected'),
+      (15, 115, 1, '2026-07-15', 'Selected'),
+      (16, 116, 1, '2026-07-15', 'Selected'),
+      (17, 117, 1, '2026-07-15', 'Selected'),
+      (18, 118, 1, '2026-07-15', 'Selected'),
+      (19, 119, 1, '2026-07-15', 'Selected'),
+      (20, 120, 1, '2026-07-15', 'Selected'),
+      (21, 121, 1, '2026-07-15', 'Selected'),
+      (22, 122, 1, '2026-07-15', 'Selected'),
+      (23, 123, 1, '2026-07-15', 'Selected'),
+      (24, 124, 1, '2026-07-15', 'Selected'),
+      (25, 125, 1, '2026-07-15', 'Selected'),
+      (26, 126, 1, '2026-07-15', 'Selected'),
+      (27, 127, 1, '2026-07-15', 'Selected'),
+      (31, 131, 2, '2026-07-16', 'Selected'),
+      (32, 132, 2, '2026-07-16', 'Selected'),
+      (33, 133, 2, '2026-07-16', 'Selected'),
+      (34, 134, 2, '2026-07-16', 'Selected'),
+      (35, 135, 2, '2026-07-16', 'Selected'),
+      (36, 136, 2, '2026-07-16', 'Selected'),
+      (37, 137, 2, '2026-07-16', 'Selected'),
+      (38, 138, 2, '2026-07-16', 'Selected'),
+      (39, 139, 2, '2026-07-16', 'Selected'),
+      (40, 140, 2, '2026-07-16', 'Selected'),
+      (41, 141, 2, '2026-07-16', 'Selected'),
+      (51, 151, 3, '2026-07-17', 'Selected'),
+      (52, 152, 3, '2026-07-17', 'Selected'),
+      (53, 153, 3, '2026-07-17', 'Selected'),
+      (54, 154, 3, '2026-07-17', 'Selected'),
+      (55, 155, 3, '2026-07-17', 'Selected'),
+      (56, 156, 3, '2026-07-17', 'Selected'),
+      (57, 157, 3, '2026-07-17', 'Selected'),
+      (58, 158, 3, '2026-07-17', 'Selected'),
+      (59, 159, 3, '2026-07-17', 'Selected'),
+      (60, 160, 3, '2026-07-17', 'Selected'),
+      (61, 161, 3, '2026-07-17', 'Selected'),
+      (62, 162, 3, '2026-07-17', 'Selected'),
+      (63, 163, 3, '2026-07-17', 'Selected'),
+      (64, 164, 3, '2026-07-17', 'Selected'),
+      (65, 165, 3, '2026-07-17', 'Selected');
+    `,
+    questions: [
+      {
+        id: "s6_q1",
+        title: "Easy Question 1 — INNER JOIN",
+        difficulty: "Easy",
+        scenario: "The Placement Officer wants to generate a report showing all students who have received placement offers along with the company name.",
+        questionText: "Display the Student Name, Company Name, and Placement Status of all students who have participated in placements.",
+        solutionQuery: "SELECT s.student_name, c.company_name, p.status FROM STUDENT s INNER JOIN PLACEMENT p ON s.student_id = p.student_id INNER JOIN COMPANY c ON p.company_id = c.company_id;",
+        hint: "Join STUDENT, PLACEMENT, and COMPANY tables together using their ID relations. Filter with standard INNER JOINs.",
+        concepts: ["INNER JOIN", "Multi-Table Join"]
+      },
+      {
+        id: "s6_q2",
+        title: "Easy Question 2 — VIEW",
+        difficulty: "Easy",
+        scenario: "The placement coordinator frequently checks students who are eligible for campus recruitment (CGPA >= 8).",
+        questionText: "Create a view named EligibleStudents that displays students having CGPA greater than or equal to 8. Then, write a SELECT query to query this view.",
+        solutionQuery: "CREATE VIEW EligibleStudents AS SELECT student_id, student_name, department, cgpa FROM STUDENT WHERE cgpa >= 8;\nSELECT * FROM EligibleStudents;",
+        hint: "Use CREATE VIEW EligibleStudents AS followed by your SELECT query, and don't forget to append SELECT * FROM EligibleStudents; as a second statement to display the output.",
+        concepts: ["CREATE VIEW", "SELECT FROM VIEW"]
+      },
+      {
+        id: "s6_q3",
+        title: "Medium Question 1 — LEFT JOIN",
+        difficulty: "Medium",
+        scenario: "The placement office wants to identify students who have not yet received any placement offer so they can provide additional training.",
+        questionText: "Display the Student ID, Student Name, and Department of students who have not been placed.",
+        solutionQuery: "SELECT s.student_id, s.student_name, s.department FROM STUDENT s LEFT JOIN PLACEMENT p ON s.student_id = p.student_id WHERE p.student_id IS NULL;",
+        hint: "Use a LEFT JOIN from STUDENT to PLACEMENT. Filter in the WHERE clause where the PLACEMENT student_id is NULL.",
+        concepts: ["LEFT JOIN", "NULL Handling"]
+      },
+      {
+        id: "s6_q4",
+        title: "Medium Question 2 — RIGHT JOIN + VIEW",
+        difficulty: "Medium",
+        scenario: "The Training and Placement Cell wants to know which companies visited the campus but did not recruit any students.",
+        questionText: "Create a view named CompanyRecruitmentStatus displaying all companies and the students recruited by them. Then write a query to display only those companies that have not recruited any students.",
+        solutionQuery: "CREATE VIEW CompanyRecruitmentStatus AS SELECT c.company_name, s.student_name, p.status FROM PLACEMENT p RIGHT JOIN COMPANY c ON p.company_id = c.company_id LEFT JOIN STUDENT s ON p.student_id = s.student_id;\nSELECT * FROM CompanyRecruitmentStatus WHERE student_name IS NULL;",
+        hint: "Define CompanyRecruitmentStatus using a RIGHT JOIN from PLACEMENT to COMPANY, and LEFT JOIN to STUDENT. Then, SELECT from this view where student_name IS NULL.",
+        concepts: ["RIGHT JOIN", "LEFT JOIN", "CREATE VIEW", "View Filtering"]
+      },
+      {
+        id: "s6_q5",
+        title: "Hard Question 1 — FULL OUTER JOIN",
+        difficulty: "Hard",
+        scenario: "The placement committee wants a complete report of all student placement statuses and company details, regardless of whether a matching placement exists.",
+        questionText: "Display all students and all companies irrespective of whether a placement exists.",
+        solutionQuery: "SELECT s.student_name, c.company_name, p.status FROM STUDENT s FULL OUTER JOIN PLACEMENT p ON s.student_id = p.student_id FULL OUTER JOIN COMPANY c ON p.company_id = c.company_id;",
+        hint: "Perform a FULL OUTER JOIN across STUDENT, PLACEMENT, and COMPANY on student_id and company_id.",
+        concepts: ["FULL OUTER JOIN", "Complete Reporting"]
+      },
+      {
+        id: "s6_q6",
+        title: "Hard Question 2 — VIEW + JOIN + GROUP BY",
+        difficulty: "Hard",
+        scenario: "The Principal wants a department-wise placement dashboard showing department, total students placed, and average package.",
+        questionText: "Create a view named DepartmentPlacementSummary displaying the department, number of selected students, and average package offered. Then write a query to display this view's contents.",
+        solutionQuery: "CREATE VIEW DepartmentPlacementSummary AS SELECT s.department, COUNT(s.student_id) AS total_selected, AVG(c.package) AS average_package FROM STUDENT s INNER JOIN PLACEMENT p ON s.student_id = p.student_id INNER JOIN COMPANY c ON p.company_id = c.company_id WHERE p.status = 'Selected' GROUP BY s.department;\nSELECT * FROM DepartmentPlacementSummary;",
+        hint: "Combine STUDENT, PLACEMENT, and COMPANY using INNER JOINs. Filter WHERE p.status = 'Selected', GROUP BY s.department, and select COUNT(s.student_id) and AVG(c.package). Remember to add a SELECT * FROM DepartmentPlacementSummary; at the end.",
+        concepts: ["CREATE VIEW", "INNER JOIN", "GROUP BY", "Aggregate Functions"]
+      }
+    ]
   }
 ];
