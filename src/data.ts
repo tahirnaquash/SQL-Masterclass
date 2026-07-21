@@ -152,7 +152,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
         desc: "Stores customer bank accounts, types, balance, and account status (e.g. Active, Inactive)."
       },
       {
-        name: "TRANSACTION",
+        name: "TRANSACTIONS",
         schema: "transaction_id INT, account_no INT, transaction_type VARCHAR(30), transaction_amount DECIMAL(12,2), transaction_date DATE",
         desc: "Tracks financial transactions per account including payment types (UPI, ATM, NEFT, IMPS) and amounts."
       }
@@ -172,7 +172,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
         status VARCHAR(20)
       );
 
-      CREATE TABLE [TRANSACTION] (
+      CREATE TABLE TRANSACTIONS (
         transaction_id INT,
         account_no INT,
         transaction_type VARCHAR(30),
@@ -192,7 +192,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
       (1015, 101, 'Current', 2500000.00, 'Active'),
       (1042, 102, 'Savings', 1800000.00, 'Active');
 
-      INSERT INTO [TRANSACTION] VALUES 
+      INSERT INTO TRANSACTIONS VALUES 
       (1, 1001, 'UPI', 450000.00, '2026-01-01'),
       (2, 1001, 'ATM', 400000.00, '2026-01-02'),
       (3, 1002, 'NEFT', 225000.00, '2026-01-03'),
@@ -201,7 +201,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
       (6, 1015, 'NEFT', 2450000.00, '2026-01-06'),
       (7, 1042, 'ATM', 1850000.00, '2026-01-07');
 
-      INSERT INTO [TRANSACTION] VALUES 
+      INSERT INTO TRANSACTIONS VALUES 
       (8, 1001, 'UPI', 100.00, '2026-01-08'),
       (9, 1001, 'UPI', 120000.00, '2026-01-09'),
       (10, 1001, 'UPI', 150000.00, '2026-01-10'),
@@ -232,7 +232,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
         difficulty: "Easy",
         scenario: "The branch manager wants a quick statistical summary of all transaction amounts processed by the bank.",
         questionText: "Find the highest, lowest and average transaction amount.",
-        solutionQuery: "SELECT MAX(transaction_amount) AS highest_amount, MIN(transaction_amount) AS lowest_amount, AVG(transaction_amount) AS average_amount FROM [TRANSACTION];",
+        solutionQuery: "SELECT MAX(transaction_amount) AS highest_amount, MIN(transaction_amount) AS lowest_amount, AVG(transaction_amount) AS average_amount FROM TRANSACTIONS;",
         hint: "Use the aggregate functions MAX(), MIN(), and AVG() with appropriate aliases: highest_amount, lowest_amount, and average_amount.",
         concepts: ["MAX", "MIN", "AVG"]
       },
@@ -242,7 +242,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
         difficulty: "Medium",
         scenario: "The bank wants to calculate the total transaction value handled by every account.",
         questionText: "Display each account number and the total transaction amount associated with the account.",
-        solutionQuery: "SELECT account_no, SUM(transaction_amount) AS total_transaction_amount FROM [TRANSACTION] GROUP BY account_no;",
+        solutionQuery: "SELECT account_no, SUM(transaction_amount) AS total_transaction_amount FROM TRANSACTIONS GROUP BY account_no;",
         hint: "Group rows by account_no using GROUP BY and calculate the sum using SUM(transaction_amount) with the alias 'total_transaction_amount'.",
         concepts: ["SUM", "GROUP BY"]
       },
@@ -252,7 +252,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
         difficulty: "Medium",
         scenario: "The finance department wants to understand how customers use different transaction channels such as UPI, ATM, NEFT and IMPS.",
         questionText: "Display each transaction type and the total number of transactions performed using that type.",
-        solutionQuery: "SELECT transaction_type, COUNT(*) AS total_transactions FROM [TRANSACTION] GROUP BY transaction_type;",
+        solutionQuery: "SELECT transaction_type, COUNT(*) AS total_transactions FROM TRANSACTIONS GROUP BY transaction_type;",
         hint: "Group by transaction_type and count the rows in each group using COUNT(*). Use the alias 'total_transactions'.",
         concepts: ["COUNT", "GROUP BY"]
       },
@@ -262,7 +262,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
         difficulty: "Hard",
         scenario: "The fraud monitoring team wants to identify bank accounts whose total transaction activity exceeds ₹10,00,000.",
         questionText: "Display the account numbers and total transaction amount of accounts whose total transaction amount exceeds ₹10,00,000.",
-        solutionQuery: "SELECT account_no, SUM(transaction_amount) AS total_transaction_amount FROM [TRANSACTION] GROUP BY account_no HAVING SUM(transaction_amount) > 1000000;",
+        solutionQuery: "SELECT account_no, SUM(transaction_amount) AS total_transaction_amount FROM TRANSACTIONS GROUP BY account_no HAVING SUM(transaction_amount) > 1000000;",
         hint: "Group by account_no, sum the transaction amounts, and filter the grouped result using HAVING SUM(transaction_amount) > 1000000.",
         concepts: ["GROUP BY", "SUM", "HAVING"]
       },
@@ -272,7 +272,7 @@ export const TRAINING_SESSIONS: TrainingSession[] = [
         difficulty: "Hard",
         scenario: "The bank's risk analysis team wants to identify transaction modes frequently used for high-value transactions.",
         questionText: "Consider only transactions above ₹50,000. Display transaction types having more than 10 such transactions and an average transaction amount greater than ₹1,00,000.",
-        solutionQuery: "SELECT transaction_type, COUNT(*) AS transaction_count, AVG(transaction_amount) AS average_amount FROM [TRANSACTION] WHERE transaction_amount > 50000 GROUP BY transaction_type HAVING COUNT(*) > 10 AND AVG(transaction_amount) > 100000;",
+        solutionQuery: "SELECT transaction_type, COUNT(*) AS transaction_count, AVG(transaction_amount) AS average_amount FROM TRANSACTIONS WHERE transaction_amount > 50000 GROUP BY transaction_type HAVING COUNT(*) > 10 AND AVG(transaction_amount) > 100000;",
         hint: "Filter individual rows using WHERE transaction_amount > 50000, then GROUP BY transaction_type, and filter groups using HAVING COUNT(*) > 10 AND AVG(transaction_amount) > 100000.",
         concepts: ["WHERE before grouping", "GROUP BY", "Multiple aggregate functions", "HAVING"]
       }
